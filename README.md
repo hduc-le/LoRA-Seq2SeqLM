@@ -8,6 +8,16 @@ To install the necessary software, follow the following command:
 pip install -r requirements.txt
 ```
 
+Recommend to install the `git-lfs` if pushing the model to HuggingFace hub while training:
+```bash
+sudo apt-get install git-lfs
+```
+
+Verify the HuggingFace access token to be allowed to create a repository for saving the model in the hub. 
+```bash
+huggingface-cli login
+```
+
 ## Usage
 Before training, you need to specify some configuration in `configs/finetune.yaml`, it will be loaded internally when executing `train.py`. 
 
