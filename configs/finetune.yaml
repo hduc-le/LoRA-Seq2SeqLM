@@ -4,7 +4,7 @@ model:
   output_dir: "saved-runs"
 
 data:
-  path: "legal_question_answer_83871_0001.json"
+  path: "data.json"
   src_len: 512
   tgt_len: 512
   train_batch_size: 4
@@ -27,7 +27,7 @@ training:
 
 lora: 
   active: true
-  checkpoint: null
+  checkpoint: null # str
   r: 8
   alpha: 32
   dropout: 0.1
