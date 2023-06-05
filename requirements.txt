@@ -1,0 +1,10 @@
+accelerate>=0.12.0
+transformers
+torchmetrics
+datasets 
+loralib 
+sentencepiece
+peft
+gdown
+colorlog
+termcolor

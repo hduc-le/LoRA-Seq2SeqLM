@@ -1,0 +1,33 @@
+model:
+  name: "VietAI/vit5-large"
+  save_name: "vit5-large-lora"
+  output_dir: "saved-runs"
+
+data:
+  path: "legal_question_answer_83871_0001.json"
+  src_len: 512
+  tgt_len: 512
+  train_batch_size: 4
+  eval_batch_size: 8
+  test_size: 0.1
+
+optimizer:
+  name: "sophia" # "adamw"
+  lr: 3.0e-5
+  min_lr: 0
+  weight_decay: 0
+  warmup_steps: 100
+
+training:
+  seed: 42
+  patience: 3
+  num_epochs: 3
+  gradient_accumulation_steps: 4
+  push_to_hub: false
+
+lora: 
+  active: true
+  checkpoint: null
+  r: 8
+  alpha: 32
+  dropout: 0.1
