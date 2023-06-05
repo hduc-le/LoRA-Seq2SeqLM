@@ -1,0 +1,13 @@
+model:
+  base_model_name_or_path: "VietAI/Vit5-large"
+  lora: true
+  lora_path: "path/to/pretrained/lora/model"
+
+generation:
+  do_sample: true
+  num_beams: 4
+  max_new_tokens: 512
+  length_penalty: 1.5
+  no_repeat_ngram_size: 3
+  early_stopping: true
+  return_input_text: false

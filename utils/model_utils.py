@@ -1,3 +1,5 @@
+import torch
+from peft import PeftModel
 from .consts import DEFAULT_INPUT_MODEL, NEW_LINE
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
@@ -19,6 +21,13 @@ def load_model_tokenizer(model_name_or_path: str = DEFAULT_INPUT_MODEL, addition
     
     return model, tokenizer
 
+def load_model_for_generation(base_model_name_or_path: str = DEFAULT_INPUT_MODEL, lora: bool = True, lora_path: str = None):
+    model, tokenizer = load_model_tokenizer(base_model_name_or_path)
+    if lora:
+        model = PeftModel.from_pretrain(model, lora_path)
+    return model, tokenizer
+
+@torch.no_grad()
 def generate(prompt, model, tokenizer, **generate_kwargs):
     prompt_encodings = tokenizer(prompt, return_tensors="pt")
     input_ids = prompt_encodings.input_ids.to(model.device)

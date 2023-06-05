@@ -34,7 +34,11 @@ accelerate config
 accelerate launch train.py --config configs/finetune.yaml
 ```
 ### Generation
-Update later
+Configure `configs/generate.yaml` then execute the following command:
+```bash
+CUDA_VISIBLE_DEVICES=0 python generate.py --config configs/generate.yaml\
+                                          --prompt "enter your instruction here!!!"
+```
 
 ## Todos (future works):
 1. DeepSpeed Integration
