@@ -56,16 +56,17 @@ def train(config):
             )
             model = get_peft_model(model, peft_config)
 
-        if accelerator.is_local_main_process:
-            print_trainable_parameters(model)
-
+        # FSDP plugin with accelerate
+        if getattr(accelerator.state, "fsdp_plugin", None) is not None:
+            accelerator.state.fsdp_plugin.auto_wrap_policy = fsdp_auto_wrap_policy(model)
+        
     logger.info(
         f"Mem needed: {model.get_memory_footprint() / 1024 / 1024 / 1024:.2f} GB"
     )
-    # FSDP plugin with accelerate
-    if getattr(accelerator.state, "fsdp_plugin", None) is not None:
-        accelerator.state.fsdp_plugin.auto_wrap_policy = fsdp_auto_wrap_policy(model)
 
+    if accelerator.is_local_main_process:
+        print_trainable_parameters(model)
+        
     model = accelerator.prepare(model)
 
     # Initialize the data processor
