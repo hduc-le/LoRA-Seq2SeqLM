@@ -33,8 +33,8 @@ NEW_LINE = "\n"
 SOURCE_PREFIX = "Input:"
 TARGET_PREFIX = "Output:"
 
-SOURCE_FORMAT = """{SOURCE_PREFIX}
-{source}""".format(SOURCE_PREFIX=SOURCE_PREFIX, source="{source}")
+SOURCE_FORMAT = """{source_prefix}
+{source}""".format(source_prefix=SOURCE_PREFIX, source="{source}")
 
-TARGET_FORMAT = """{TARGET_PREFIX}
-{target}""".format(TARGET_FORMAT=TARGET_PREFIX, target="{target}")
+TARGET_FORMAT = """{target_prefix}
+{target}""".format(target_prefix=TARGET_PREFIX, target="{target}")
