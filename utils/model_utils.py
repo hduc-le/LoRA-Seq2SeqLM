@@ -27,7 +27,6 @@ def load_model_for_generation(base_model_name_or_path: str = DEFAULT_INPUT_MODEL
         model = PeftModel.from_pretrain(model, lora_path)
     return model, tokenizer
 
-@torch.no_grad()
 def generate(prompt, model, tokenizer, **generate_kwargs):
     prompt_encodings = tokenizer(prompt, return_tensors="pt")
     input_ids = prompt_encodings.input_ids.to(model.device)
